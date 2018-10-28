@@ -57,5 +57,24 @@ app.get("/books", (req, res) => {
       }
   })
 
- // res.send();
+  
 });
+
+
+app.get("/book/:id", (req,res)=>{
+
+    Book.findById(req.params.id).then((book)=>{
+        if(book){
+            res.json(book)
+        }else{
+            res.sendStatus(404);
+        }
+
+
+    }).catch(err =>{
+        if(err){
+            throw err;
+        }
+    })
+
+  });
